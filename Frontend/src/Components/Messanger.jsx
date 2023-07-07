@@ -11,7 +11,7 @@ export default function Messanger() {
     <AppBar sx={{backgroundColor:"#128C7E", height:"250px",boxShadow:"none"}}>
         <Toolbar></Toolbar>
     </AppBar>
-     <LoginDialog></LoginDialog>
+     <LoginDialog/>
     </Box>
   </>
   )

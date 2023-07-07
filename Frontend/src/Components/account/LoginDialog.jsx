@@ -4,6 +4,12 @@ import { Box, Typography } from '@mui/material';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import styled from '@emotion/styled';
+//==============================================================
+import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from "jwt-decode";
+
+//==============================================================
+
 export default function LoginDialog() {
 
 const Listitems=styled(List)({
@@ -16,8 +22,6 @@ const Listitems=styled(List)({
     }
 
 })
-
-
 
   return (
     <Dialog PaperProps={{sx:{height:"80%",marginTop:"5%",width:"60%",maxWidth:"100%",maxHeight:"100%",boxShadow:"none"}}}   open={true}>
@@ -34,8 +38,21 @@ const Listitems=styled(List)({
                 <ListItem>3. Tap Menu Setting and select WhatsApp Web</ListItem>
             </Listitems>
             </Box>
-            <Box>
-           <img style={{width:264, height:264, margin:"56px 0 0 100px"}} src="https://www.investopedia.com/thmb/hJrIBjjMBGfx0oa_bHAgZ9AWyn0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/qr-code-bc94057f452f4806af70fd34540f72ad.png" alt="" srcset="" />
+            <Box sx={{position:"relative",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
+           <img style={{width:264, height:264, margin:"56px 0 0 100px"}} src="https://www.investopedia.com/thmb/hJrIBjjMBGfx0oa_bHAgZ9AWyn0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/qr-code-bc94057f452f4806af70fd34540f72ad.png" alt="" srcSet="" />
+           <Box  sx={{position:"absolute",top:"50%",translate:"20px 0px"}}>
+           <GoogleLogin 
+                                onSuccess={credentialResponse => {
+                                    let c=credentialResponse.credential
+                                    var decoded = jwt_decode(c);
+                                    console.log(decoded);
+                                }}
+                                onError={() => {
+                                    console.log('Login Failed');
+                                }}
+                                />;
+
+           </Box>
             </Box>
         </Box>
 
