@@ -1,15 +1,17 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import ChatIcon from "@mui/icons-material/Chat";
 
 import IconButton from "@mui/material/IconButton";
 import DataSaverOffIcon from '@mui/icons-material/DataSaverOff';
 import HeaderMenu from "./HeaderMenu";
+import UserInfoDrawer from "../../Drawer/UserInfoDrawer";
 
 export default function LeftHeder() {
   let selecter = useSelector((state) => state.LoginuserSlice.data);
-  console.log(selecter.picture);
+  // console.log(selecter.picture);
+  const[openDarawer,setopenDarawer]=useState(true)
   return (
     <Box
       sx={{
@@ -21,7 +23,7 @@ export default function LeftHeder() {
         alignItems: "center",
       }}
     >
-      <img
+      <img onClick={()=>setopenDarawer(!openDarawer)}
         style={{ height: "40px", width: "40px", borderRadius: "50%" }}
         src={selecter.picture}
         alt="userDp"
@@ -36,6 +38,7 @@ export default function LeftHeder() {
         <IconButton>
             <HeaderMenu/>
         </IconButton>
+        <UserInfoDrawer openDarawer={openDarawer} setopenDarawer={setopenDarawer}/>
 
       </Box>
     </Box>
