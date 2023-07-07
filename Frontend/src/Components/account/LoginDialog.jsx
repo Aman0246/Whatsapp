@@ -14,10 +14,6 @@ import { LoginedUser } from "../../ReduxToolkit/LoginUser";
 export default function LoginDialog() {
   const dispatch = useDispatch();
   const selector=useSelector(state=>state);
-//   useEffect(() => {
-//     console.log(selector);
-//   }, [selector]);
-
   const Listitems = styled(List)({
     "&>li": {
       padding: 0,
