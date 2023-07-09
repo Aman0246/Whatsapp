@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import CreateIcon from "@mui/icons-material/Create";
 
 export default function Profile() {
-  const selector = useSelector((state) => state.LoginuserSlice.data);
-  // console.log(selector.data.data.picture);
+  const selector = useSelector((state) => state.LoginuserSlice.data[0]);
+  console.log(selector.picture);
   return (
    
     <Box>
@@ -19,7 +19,7 @@ export default function Profile() {
       >
         <img
           style={{ borderRadius: "100%", width: "200px" }}
-          src={selector.data.data.picture}
+          src={selector.picture}
           alt=""
           srcset=""
         />
@@ -45,7 +45,7 @@ export default function Profile() {
           }}
         >
           <Typography>
-            {selector.data.data.given_name} {selector.data.data.family_name}
+            {selector.given_name} {selector.family_name}
           </Typography>
           <CreateIcon />
         </Box>

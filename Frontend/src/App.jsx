@@ -22,15 +22,17 @@ const selector=useSelector(state=>state)
       if(userdata.data.status==true){
         dispatch(LoginedUser(userdata.data.data))
       }
-        
-        //  if(userdata.data.data)
-    })
+      
+      //  if(userdata.data.data)
+    }
+    )
     // if(checkuserinLocalStorage)
     // console.log(checkuserinLocalStorage)
   }
-     run()
-     console.log(selector)
-  })
+  run()  
+  
+},[])
+console.log(selector)
 
 
 
