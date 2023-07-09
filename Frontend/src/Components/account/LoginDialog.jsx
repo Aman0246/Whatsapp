@@ -57,7 +57,6 @@ export default function LoginDialog() {
         } else if (userData.data.status == false) {
           toast.error(userData.data.message);
         }
-        // dispatch(LoginedUser(decoded))
       });
     }
   };
@@ -71,7 +70,7 @@ export default function LoginDialog() {
     // console.log(userData.data.data._id)
     if (userData.data.status == true) {
       toast.success(userData.data.message);
-      dispatch(LoginedUser(userData))
+      dispatch(LoginedUser(userData.data.data))
       localStorage.setItem("id",userData.data.data._id)
     } else if (userData.data.status == false) {
       toast.error(userData.data.message);
@@ -152,6 +151,7 @@ export default function LoginDialog() {
               />
               <TextField
                 id="standard-basic"
+                type="password"
                 name="Password"
                 onChange={(e) => handleChange(e)}
                 label="Password"
@@ -159,6 +159,7 @@ export default function LoginDialog() {
               />
               <TextField
                 id="standard-basic"
+                type="password"
                 name="Cpassword"
                 onChange={(e) => handleChange(e)}
                 label="Conform Password"
@@ -246,6 +247,7 @@ export default function LoginDialog() {
                 name="Password"
                 onChange={(e) => handleChange(e)}
                 label="Password"
+                type="password"
                 variant="standard"
               />
       
