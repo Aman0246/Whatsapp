@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 export default function Messanger() {
   let selector = useSelector((state) => state);
-  console.log(selector);
+  // console.log(selector);
 
   return (
     <>
