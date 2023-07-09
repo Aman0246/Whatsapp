@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 // import { LoginedUser } from "../../ReduxToolkit/LoginUser";
 
 export default function PasswordDialog({ onSucces }) {
-            
 const dispatch=useDispatch()
 
   const [open,setopen]=useState(true)
@@ -135,12 +134,14 @@ const dispatch=useDispatch()
           name="password"
           id="filled-basic"
           label="Password"
+          type="password"
           variant="standard"
         />
         <TextField
           onChange={(e) => handleChange(e)}
           name="conformpassword"
           id="filled-basic"
+          type="password"
           label="ConformPassword"
           variant="standard"
         />

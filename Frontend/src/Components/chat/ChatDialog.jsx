@@ -3,6 +3,8 @@ import React from "react";
 import Dialog from "@mui/material/Dialog";
 import Menu from "./Menu/Menu";
 import EmptyChat from "./EmptyChat";
+import ConversationList from "./Menu/ConversationList";
+import ChatBox from "./ChatBox";
 
 
 export default function ChatDialog() {
@@ -24,12 +26,19 @@ export default function ChatDialog() {
       <Box sx={{display:"flex"}}>
            <Box sx={{minWidth:"450px",height:"100%",borderRight:"1px solid #dadada"}}>
                <Menu/>
-              
+                      
+
+                      <ConversationList/>
+
+
+
            </Box>
 
 
             <Box sx={{minWidth:"73%",minWidth:"300px"}}>
-                <EmptyChat/>
+
+                {/* <EmptyChat/> */}
+                <ChatBox/>
             </Box>
 
       </Box>

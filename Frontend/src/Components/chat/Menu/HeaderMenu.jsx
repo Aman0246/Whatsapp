@@ -3,12 +3,22 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box } from '@mui/material';
+import { LogoutUser } from '../../../ReduxToolkit/LoginUser';
+import { useDispatch } from 'react-redux';
 
 export default function HeaderMenu() {
+  const dispatch=useDispatch()
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClose = () => {
         setAnchorEl(null);
+
+      };
+    const handleLogout = () => {
+      localStorage.clear("id")
+      dispatch(LogoutUser())
+        setAnchorEl(null);
+
       };
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -34,7 +44,7 @@ export default function HeaderMenu() {
         }}
       >
         <MenuItem sx={{fontSize:"14px",padding:"15px 60px 5px 24px",color:"#4a4a4a"}} onClick={handleClose}>Profile</MenuItem>
-        <MenuItem sx={{fontSize:"14px",padding:"15px 60px 5px 24px",color:"#4a4a4a"}}  onClick={handleClose}>Logout</MenuItem>
+        <MenuItem sx={{fontSize:"14px",padding:"15px 60px 5px 24px",color:"#4a4a4a"}}  onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </Box>
   )
