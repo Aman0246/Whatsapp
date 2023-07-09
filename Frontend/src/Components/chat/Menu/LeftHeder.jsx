@@ -10,9 +10,10 @@ import UserInfoDrawer from "../../Drawer/UserInfoDrawer";
 
 export default function LeftHeder() {
   let selecter = useSelector((state) => state.LoginuserSlice.data);
-  // console.log(selecter.picture);
-  const[openDarawer,setopenDarawer]=useState(true)
+  console.log(selecter._id);
+  const[openDarawer,setopenDarawer]=useState(false)
   return (
+    // {state.LoginuserSlice.data}  
     <Box
       sx={{
         height: "44px",
@@ -25,7 +26,7 @@ export default function LeftHeder() {
     >
       <img onClick={()=>setopenDarawer(!openDarawer)}
         style={{ height: "40px", width: "40px", borderRadius: "50%" }}
-        src={selecter.picture}
+        src={selecter.data.data.picture}
         alt="userDp"
       />
       <Box>

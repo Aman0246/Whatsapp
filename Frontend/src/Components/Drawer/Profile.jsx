@@ -5,8 +5,9 @@ import CreateIcon from "@mui/icons-material/Create";
 
 export default function Profile() {
   const selector = useSelector((state) => state.LoginuserSlice.data);
-  console.log(selector);
+  // console.log(selector.data.data.picture);
   return (
+   
     <Box>
       <Box
         sx={{
@@ -18,7 +19,7 @@ export default function Profile() {
       >
         <img
           style={{ borderRadius: "100%", width: "200px" }}
-          src={selector.picture}
+          src={selector.data.data.picture}
           alt=""
           srcset=""
         />
@@ -44,7 +45,7 @@ export default function Profile() {
           }}
         >
           <Typography>
-            {selector.given_name} {selector.family_name}
+            {selector.data.data.given_name} {selector.data.data.family_name}
           </Typography>
           <CreateIcon />
         </Box>
