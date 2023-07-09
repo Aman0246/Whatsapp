@@ -54,7 +54,8 @@ const dispatch=useDispatch()
                   if (userData.data.status == true) {
                     toast.success(userData.data.message);
                     localStorage.setItem("id",userData.data.data._id)
-                    dispatch(LoginedUser(userData))
+                    console.log(userData.data.data)
+                    dispatch(LoginedUser(userData.data.data))
                   } else if (userData.data.status == false) {
                     toast.error(userData.data.message);
                   }
@@ -82,7 +83,7 @@ const dispatch=useDispatch()
                   if (userData.data.status == true) {
                     toast.success(userData.data.message);
                     localStorage.setItem("id",userData.data.data._id)
-                    dispatch(LoginedUser(userData))
+                    dispatch(LoginedUser(userData.data.data))
                   } else if (userData.data.status == false) {
                     toast.error(userData.data.message);
                   }
