@@ -3,7 +3,7 @@ import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 
-export default function Search() {
+export default function Search({setsearch}) {
   return (
     <Box
       sx={{
@@ -43,6 +43,7 @@ export default function Search() {
             paddingLeft: "60px",
           }}
           placeholder="Search or Start New Chat"
+          onChange={(e)=> setsearch(e.target.value)}
         />
       </Box>
     </Box>
