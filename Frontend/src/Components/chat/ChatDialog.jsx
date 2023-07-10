@@ -1,13 +1,16 @@
 import { Box} from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import Menu from "./Menu/Menu";
 import EmptyChat from "./EmptyChat";
 import ConversationList from "./Menu/ConversationList";
 import ChatBox from "./ChatBox";
+import { useSelector } from "react-redux";
 
 
 export default function ChatDialog() {
+  const selector=useSelector(state=>state.allSlices.data)
+  const[search,setsearch]=useState("")
   return (
     <Dialog
       hideBackdrop={true}
@@ -25,10 +28,10 @@ export default function ChatDialog() {
     >
       <Box sx={{display:"flex"}}>
            <Box sx={{minWidth:"450px",height:"100%",borderRight:"1px solid #dadada"}}>
-               <Menu/>
+               <Menu search={search} setsearch={setsearch}/>
                       
 
-                      <ConversationList/>
+                      <ConversationList search={search} setsearch={setsearch}/>
 
 
 
@@ -36,9 +39,9 @@ export default function ChatDialog() {
 
 
             <Box sx={{minWidth:"73%",minWidth:"300px"}}>
-
-                {/* <EmptyChat/> */}
-                <ChatBox/>
+ {selector.length==0?<EmptyChat/>:<ChatBox/> }
+                
+               
             </Box>
 
       </Box>

@@ -21,20 +21,12 @@ const selector=useSelector(state=>state)
       console.log(userdata.data.data)
       if(userdata.data.status==true){
         dispatch(LoginedUser(userdata.data.data))
-      }
-      
-      //  if(userdata.data.data)
-    }
+      }    }
     )
-    // if(checkuserinLocalStorage)
-    // console.log(checkuserinLocalStorage)
   }
   run()  
   
 },[])
-console.log(selector)
-
-
 
 const clientId= import.meta.env.VITE_GOOGLEOUATH_CLIENTID
 // console.log(clientId)
