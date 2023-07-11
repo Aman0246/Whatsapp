@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 const initialvalue={
-    data:[]
+    data:[],
+    chatId:[]
 }
 export const AllSlices = createSlice({
     name: 'AllSlices',
@@ -11,10 +12,15 @@ export const AllSlices = createSlice({
            state.data=[action.payload]
         },
 
+        IdoffullChat:(state,action)=>{
+      
+            state.chatId=[action.payload]
+        }
+
       
     }
 })
 
-export const { SelectedUser } = AllSlices.actions
+export const { SelectedUser,IdoffullChat } = AllSlices.actions
 export default AllSlices.reducer
 

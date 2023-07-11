@@ -2,19 +2,23 @@ import { Box } from '@mui/material'
 import React from 'react'
 import Divider from '@mui/material/Divider';
 import { useDispatch, useSelector } from 'react-redux';
-import { SelectedUser } from '../../../ReduxToolkit/sliceses';
+import { IdoffullChat, SelectedUser } from '../../../ReduxToolkit/sliceses';
 import axios from 'axios'
 
 export default function ConversationParticular({user}) {
+  // const selector=useSelector(state=>state)
   const dispatch=useDispatch()
-  const selector=useSelector(state=>state)
   
+
   const handleClick=async()=>{
     let c=localStorage.getItem("id")
     dispatch(SelectedUser(user))
-    await  axios.post("/conversation/add",{senderId:c,receiverId:selector.allSlices.data[0]._id}).then((data)=>{
-      console.log(data)
-    })
+      //  console.log(user)
+      await  axios.post("/conversation/add",{senderId:c,receiverId:user._id}).then((data)=>{
+        // console.log(data,data.data.data._id)
+        dispatch(IdoffullChat(data.data.data._id))
+      })
+
 }
 
   return (

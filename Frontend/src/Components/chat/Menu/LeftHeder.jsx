@@ -10,7 +10,7 @@ import UserInfoDrawer from "../../Drawer/UserInfoDrawer";
 
 export default function LeftHeder() {
   let selecter = useSelector((state) => state);
-  console.log(selecter.LoginuserSlice.data[0]);
+  // console.log(selecter.LoginuserSlice.data[0]);
   const[openDarawer,setopenDarawer]=useState(false)
   return (
     // {state.LoginuserSlice.data}  
