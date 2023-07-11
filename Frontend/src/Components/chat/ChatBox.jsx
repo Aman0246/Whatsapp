@@ -6,11 +6,12 @@ import FooterRight from './RightSideSomeData/FooterRight';
 
 export default function ChatBox() {
   const[textmessage,settextmessage]=useState("")
+  const[DBchat,setDBchat]=useState("")
   return (
     <Box sx={{width:"100%"}}>
       <ChatHadder/>
-      <Message/>
-      <FooterRight textmessage={textmessage} settextmessage={settextmessage} />
+      <Message DBchat={DBchat} setDBchat={setDBchat} />
+      <FooterRight DBchat={DBchat} setDBchat={setDBchat}   textmessage={textmessage} settextmessage={settextmessage} />
        </Box>
   )
 }

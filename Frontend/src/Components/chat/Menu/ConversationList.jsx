@@ -18,7 +18,7 @@ useEffect(()=>{
   }
   getuser()
 
-},[search ])
+},[search])
 
 let LocalId=localStorage.getItem("id")
   return (

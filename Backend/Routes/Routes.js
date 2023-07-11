@@ -11,7 +11,7 @@ routes.post("/userCheck",user)
 routes.get("/alluser",alluser)
 routes.post("/conversation/add",newconversation)
 routes.post("/newMessage",newMessage)
-routes.post("/allmessage/:id",getMessage)
+routes.get("/allmessage/:id",getMessage)
 
 
 module.exports={routes}
