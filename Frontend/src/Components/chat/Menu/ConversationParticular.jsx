@@ -15,7 +15,7 @@ export default function ConversationParticular({user}) {
     dispatch(SelectedUser(user))
       //  console.log(user)
       await  axios.post("/conversation/add",{senderId:c,receiverId:user._id}).then((data)=>{
-        // console.log(data,data.data.data._id)
+        // handlEenter from FooterRight.jsx
         dispatch(IdoffullChat(data.data.data._id))
       })
 
