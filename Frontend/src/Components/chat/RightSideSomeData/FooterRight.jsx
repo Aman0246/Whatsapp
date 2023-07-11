@@ -6,17 +6,19 @@ import InputBase from '@mui/material/InputBase';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import styled from '@emotion/styled';
 
 export default function FooterRight({textmessage,settextmessage,setDBchat}) { 
     const[newmessagePlane,setnewmessagePlane]=useState(false)
     let s=useSelector(state=>state)
-    console.log(s.allSlices.chatId[0])
+    console.log(s.allSlices)
 ///all messages---------------------------------------
+//main----------------------------section----------------------------------------
 useEffect(()=>{
     
 const getmessage=async()=>{
 await axios.get(`/allmessage/${s.allSlices.chatId[0]}`).then((e)=>{
-    // console.log(e.data.data[0].text)
+    console.log(e.data.data)
     setDBchat(e.data.data)
 })
 }
@@ -35,7 +37,7 @@ s.allSlices.chatId[0]&&getmessage()
                 type:typeof textmessage,
                 text:textmessage
             }
-                    
+
          const newMessage=async()=>{
             try {
                 await axios.post("/newMessage",message).then((data)=>{
@@ -54,12 +56,19 @@ s.allSlices.chatId[0]&&getmessage()
         }
 
     }
+    const Clip=styled(AttachFileIcon)({
+        transform:"rotate(40deg)"
+    })
 
     return (
         <Box sx={{ height: "8vh", background: "#ededed", display: "flex", justifyContent: "space-between", padding: "0 20px", alignItems: "center" }}>
             <Box sx={{ display: "flex", gap: "20px", justifyContent: "center", alignItems: "center" }}>
                 <SentimentSatisfiedAltIcon />
-                <AttachFileIcon />
+                <input type="file" style={{display:"none"}} id="fileattach" />
+                <label htmlFor='fileattach'>
+                <Clip />
+                </label>
+
                 <InputBase value={textmessage} sx={{ background: "#fff", width: "845px", borderRadius: "10px", padding: "0 20px" }} placeholder='Type a message' onChange={(e)=>settextmessage(e.target.value)}  onKeyUp={(e)=>{handleEnter(e)}} />
             </Box>
 
