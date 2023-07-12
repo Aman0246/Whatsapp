@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material'
 import React from 'react'
 
 export default function DisplayMessageFormate({ e }) {
+
     const dateFormate=(date)=>{
         const hours=new Date(date).getHours();
         const minutes=new Date(date).getMinutes();
