@@ -10,7 +10,7 @@ export default function ChatBox() {
   return (
     <Box sx={{width:"100%"}}>
       <ChatHadder/>
-      <Message DBchat={DBchat} setDBchat={setDBchat} />
+      <Message DBchat={DBchat} textmessage={textmessage} setDBchat={setDBchat} />
       <FooterRight DBchat={DBchat} setDBchat={setDBchat}   textmessage={textmessage} settextmessage={settextmessage} />
        </Box>
   )
