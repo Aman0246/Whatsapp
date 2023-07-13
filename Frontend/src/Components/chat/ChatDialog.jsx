@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 export default function ChatDialog() {
   const selector=useSelector(state=>state.allSlices.data)
   const[search,setsearch]=useState("")
+  const[activeuser,setactiveuser]=useState([])
   return (
     <Dialog
       hideBackdrop={true}
@@ -31,7 +32,7 @@ export default function ChatDialog() {
                <Menu search={search} setsearch={setsearch}/>
                       
 
-                      <ConversationList search={search} setsearch={setsearch}/>
+                      <ConversationList activeuser={activeuser} setactiveuser={setactiveuser} search={search} setsearch={setsearch}/>
 
 
 
@@ -39,7 +40,7 @@ export default function ChatDialog() {
 
 
             <Box sx={{minWidth:"73%",minWidth:"300px"}}>
- {selector.length==0?<EmptyChat/>:<ChatBox/> }
+ {selector.length==0?<EmptyChat/>:<ChatBox activeuser={activeuser} setactiveuser={setactiveuser}/> }
                 
                
             </Box>

@@ -7,28 +7,56 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import styled from '@emotion/styled';
+import { io } from 'socket.io-client';
 
-export default function FooterRight({textmessage,settextmessage,setDBchat}) { 
+
+export default function FooterRight({textmessage,settextmessage,setDBchat,setFile,file}) { 
+    const ENDPOINT="http://localhost:7000";
+    let socket;
+    socket=io(ENDPOINT)
+
+      const[incommingMessage,setincommingMessage]=useState(null)
     const[newmessagePlane,setnewmessagePlane]=useState(false)
     let s=useSelector(state=>state)
     console.log(s.allSlices)
 ///all messages---------------------------------------
+useEffect(()=>{
+    socket.on("getMessage",data=>{
+        setincommingMessage({...data,
+        createdAt:Date.now()
+        })
+
+    })
+})
+
 //main----------------------------section----------------------------------------
 useEffect(()=>{
     
 const getmessage=async()=>{
 await axios.get(`/allmessage/${s.allSlices.chatId[0]}`).then((e)=>{
-    console.log(e.data.data)
+
+    // socket.on('getMessage',(data)=>{
+    //     console.log(data)
+    // })
     setDBchat(e.data.data)
 })
 }
 s.allSlices.chatId[0]&&getmessage()
 },[s.allSlices.chatId[0],newmessagePlane])
 
+
+useEffect(()=>{
+    incommingMessage&&conversation?.members?.includes(incommingMessage.senderId)&&
+    setDBchat(prev=>[...prev,incommingMessage])
+
+},[incommingMessage])
+
 //---------------------------------------
 
     const handleEnter=(e)=>{
         if(e.key=="Enter"&& textmessage.length>0){
+
+
            
             let message={
                 senderId:localStorage.getItem("id"),
@@ -36,6 +64,24 @@ s.allSlices.chatId[0]&&getmessage()
                 conversationId:s.allSlices.chatId[0],
                 type:typeof textmessage,
                 text:textmessage
+            }
+
+            if(file.length!=0){
+                         
+                         const Data=new FormData()
+                          Data.append("file",file)
+                          Data.append("name",file.name)
+                
+                const uploadFiletobackend=async()=>{
+
+                    try {
+                        await axios.post("/upload/files",Data)
+                    } catch (error) {
+                        
+                    }
+                }
+
+                uploadFiletobackend()
             }
 
          const newMessage=async()=>{
@@ -47,6 +93,8 @@ s.allSlices.chatId[0]&&getmessage()
                 console.log(error.message)
             }
          }
+
+          socket.emit("sendMessage",message)
 
          newMessage()
      
@@ -60,11 +108,16 @@ s.allSlices.chatId[0]&&getmessage()
         transform:"rotate(40deg)"
     })
 
+    const onFileChange=(e)=>{
+        setFile(e.target.files[0])
+        settextmessage(e.target.files[0].name)
+    }
+
     return (
         <Box sx={{ height: "8vh", background: "#ededed", display: "flex", justifyContent: "space-between", padding: "0 20px", alignItems: "center" }}>
             <Box sx={{ display: "flex", gap: "20px", justifyContent: "center", alignItems: "center" }}>
                 <SentimentSatisfiedAltIcon />
-                <input type="file" style={{display:"none"}} id="fileattach" />
+                <input type="file" style={{display:"none"}} id="fileattach"  onChange={(e)=>onFileChange(e)}/>
                 <label htmlFor='fileattach'>
                 <Clip />
                 </label>

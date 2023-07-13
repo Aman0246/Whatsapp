@@ -2,9 +2,33 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import ConversationParticular from './ConversationParticular'
 import { Box } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
+import { io } from 'socket.io-client'
 
-export default function ConversationList({search}) {
-const [user,setuser]=useState([])
+
+export default function ConversationList({search,setactiveuser,activeuser}) {
+  let selector=useSelector(state=>state)
+  let dispatch=useDispatch()
+  let logineduser=selector.LoginuserSlice.data[0]
+
+  let socket;
+  //=======================================================================
+  const [user,setuser]=useState([])
+  const ENDPOINT="http://localhost:7000";
+  useEffect(()=>{
+    socket=io(ENDPOINT)
+    //logined user
+    socket.emit("adduser",(logineduser))
+    socket.on("getuser",(users)=>{
+     console.log(users)
+      setactiveuser(users)
+    
+      
+  })
+  },[logineduser])
+
+  
+  //-------------------------------------------------------------------
 
 useEffect(()=>{
 
@@ -19,6 +43,16 @@ useEffect(()=>{
   getuser()
 
 },[search])
+
+
+//-------------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------------
+
+
+
+
+
 
 let LocalId=localStorage.getItem("id")
   return (

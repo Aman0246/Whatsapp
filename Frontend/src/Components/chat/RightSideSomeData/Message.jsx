@@ -11,8 +11,9 @@ export default function Message({DBchat,textmessage}) {
   let last=useRef(null)
   console.log(DBchat)
   useEffect(()=>{
-    last.current.scrollIntoView()
+    last.current.scrollIntoView({transition:'smooth'})
   },[textmessage,DBchat.length])
+  
 
     const Wrapper =styled(Box)({
         backgroundImage:'url(https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png)'
