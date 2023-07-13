@@ -58,7 +58,7 @@ const user=async(req,res)=>{
 const alluser=async(req,res)=>{
     try {
         let data=await userModel.find()
-        console.log(data)
+        // console.log(data)
         if(data.length==0)return res.send({status:false,message:"No User found"})
         res.send({status:true,message:"All User",data:data}) 
 

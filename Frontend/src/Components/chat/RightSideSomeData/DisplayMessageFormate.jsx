@@ -13,9 +13,9 @@ let senderidFromLocal=localStorage.getItem("id")
         <>
         {senderidFromLocal==e.senderId?
         <Box>
-            <Box sx={{ backgroundColor: "#dcf8c6",marginTop:"10px", maxWidth: "60%", marginLeft: "auto", padding: "5px", width: "fit-content", display: 'flex',alignItems:"baseline" ,wordBreak: "break-word", borderRadius: "20px" }}>
+            <Box sx={{ backgroundColor: "#dcf8c6",marginTop:"10px", maxWidth: "60%", flexDirection:"column",marginLeft: "auto", padding: "5px", width: "fit-content", display: 'flex',alignItems:"baseline" ,wordBreak: "break-word", borderRadius: "15px" }}>
                 <Typography>{e.text}</Typography>
-                <Typography sx={{fontSize:"10px",color:"#919191",paddingLeft:"10px"}}>{dateFormate(e.createdAt)}</Typography>
+                <Typography sx={{fontSize:"10px",color:"#919191",marginLeft:"auto",paddingLeft:"10px"}}>{dateFormate(e.createdAt)}</Typography>
             </Box>
         </Box>
         :

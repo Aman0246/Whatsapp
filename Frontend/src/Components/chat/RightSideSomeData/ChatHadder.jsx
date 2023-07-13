@@ -4,9 +4,14 @@ import { Typography, useTheme } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useDispatch, useSelector } from 'react-redux'
-export default function ChatHadder() {
+export default function ChatHadder({activeuser}) {
     const selector=useSelector(state=>state.allSlices.data[0])
-    // console.log(selector)
+    // const selectors=useSelector(state=>state)
+    // console.log(activeuser[0]._id)
+    // console.log(selectors.allSlices.data[0]._id)
+    // console.log(activeuser[0]._id)
+
+   
   return (
    <Box sx={{display:"flex",background:"#ededed",minWidth:"970px",padding:"5px 16px",alignItems:"center",justifyContent:"space-between"}}> 
    <Box sx={{display:"flex",justifyContent:"center",alignItems:"center"}}>
@@ -16,7 +21,7 @@ export default function ChatHadder() {
 
 
         <Typography>{selector.given_name}{" "}{selector.family_name}</Typography>
-        <Typography >Online</Typography>
+        <Typography >{activeuser?.some(user=>user?._id===selector._id)?<span style={{color:"green"}}>online</span>:<span style={{color:"red"}}>offline</span>}</Typography>
     </Box>
    </Box>
     

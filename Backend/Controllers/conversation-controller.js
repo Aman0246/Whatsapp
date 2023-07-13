@@ -2,7 +2,7 @@ const { conversationModel } = require("../Models/ChatModel");
 const newconversation = async (req, res) => {
   try {
     const { senderId, receiverId } = req.body;
-    console.log({ senderId, receiverId });
+    // console.log({ senderId, receiverId });
     const exist = await conversationModel.findOne({
       member: { $all: [senderId, receiverId] },
     });

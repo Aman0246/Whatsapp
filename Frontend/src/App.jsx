@@ -5,13 +5,17 @@ import axios from 'axios'
 import Messanger from './Components/Messanger'
 import { useEffect } from 'react';
 import { LoginedUser } from './ReduxToolkit/LoginUser';
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useDispatch} from 'react-redux';
 axios.defaults.baseURL = import.meta.env.VITE_PORT;
 axios.defaults.withCredentials = true;
+//====================================================================
+
 function App() {
-const dispatch=useDispatch()
-const selector=useSelector(state=>state)
+  
+//=============================================================
+
+  const dispatch=useDispatch()
+
 
   let checkuserinLocalStorage=localStorage.getItem("id")
   let data={id:checkuserinLocalStorage}
