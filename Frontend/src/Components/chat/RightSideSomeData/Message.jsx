@@ -7,12 +7,12 @@ import DisplayMessageFormate from './DisplayMessageFormate'
 // https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png
 
 
-export default function Message({DBchat,textmessage}) {
+export default function Message({DBchat,textmessage,incommingMessage}) {
   let last=useRef(null)
   console.log(DBchat)
   useEffect(()=>{
     last.current.scrollIntoView({transition:'smooth'})
-  },[textmessage,DBchat.length])
+  },[textmessage,incommingMessage,DBchat.length])
   
 
     const Wrapper =styled(Box)({
@@ -23,9 +23,17 @@ export default function Message({DBchat,textmessage}) {
   return (
     <Wrapper>
       {DBchat.length>0&& DBchat.map((e)=><DisplayMessageFormate e={e}/>)}
-     <div ref={last}></div>
+     <div ></div>
+     <div ></div>
+     <div ></div>
+     <div ></div>
+     <div ></div>
+     <div ></div>
+     <div ></div>
+     <div ></div>
+     <div ref={last} ></div>
     </Wrapper>
     
-  )
-}
- 
+    )
+  }
+  

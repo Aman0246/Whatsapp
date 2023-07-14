@@ -10,24 +10,28 @@ import styled from '@emotion/styled';
 import { io } from 'socket.io-client';
 
 
-export default function FooterRight({textmessage,settextmessage,setDBchat,setFile,file}) { 
+export default function FooterRight({textmessage,settextmessage,setDBchat,setFile,file,setincommingMessage,incommingMessage}) { 
     const ENDPOINT="http://localhost:7000";
     let socket;
     socket=io(ENDPOINT)
 
-      const[incommingMessage,setincommingMessage]=useState(null)
+   
     const[newmessagePlane,setnewmessagePlane]=useState(false)
     let s=useSelector(state=>state)
     console.log(s.allSlices)
 ///all messages---------------------------------------
-useEffect(()=>{
-    socket.on("getMessage",data=>{
-        setincommingMessage({...data,
+useEffect(() => {
+    socket.on("getMessage", data => {
+      console.log("Received message:", data);
+      setincommingMessage({
+        ...data,
         createdAt:Date.now()
-        })
-
+      })
     })
-})
+    incommingMessage&&incommingMessage.senderId&&
+    setDBchat(prev=>[...prev,incommingMessage])
+  }, [incommingMessage]);
+  
 
 //main----------------------------section----------------------------------------
 useEffect(()=>{
@@ -35,9 +39,6 @@ useEffect(()=>{
 const getmessage=async()=>{
 await axios.get(`/allmessage/${s.allSlices.chatId[0]}`).then((e)=>{
 
-    // socket.on('getMessage',(data)=>{
-    //     console.log(data)
-    // })
     setDBchat(e.data.data)
 })
 }
@@ -45,11 +46,11 @@ s.allSlices.chatId[0]&&getmessage()
 },[s.allSlices.chatId[0],newmessagePlane])
 
 
-useEffect(()=>{
-    incommingMessage&&conversation?.members?.includes(incommingMessage.senderId)&&
-    setDBchat(prev=>[...prev,incommingMessage])
+// useEffect(()=>{
+//     incommingMessage&&incommingMessage.senderId&&
+//     setDBchat(prev=>[...prev,incommingMessage])
 
-},[incommingMessage])
+// },[incommingMessage])
 
 //---------------------------------------
 
@@ -83,7 +84,8 @@ useEffect(()=>{
 
                 uploadFiletobackend()
             }
-
+            
+            socket.emit("sendMessage",message)
          const newMessage=async()=>{
             try {
                 await axios.post("/newMessage",message).then((data)=>{
@@ -94,7 +96,6 @@ useEffect(()=>{
             }
          }
 
-          socket.emit("sendMessage",message)
 
          newMessage()
      

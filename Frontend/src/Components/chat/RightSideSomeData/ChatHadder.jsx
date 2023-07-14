@@ -6,10 +6,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useDispatch, useSelector } from 'react-redux'
 export default function ChatHadder({activeuser}) {
     const selector=useSelector(state=>state.allSlices.data[0])
-    // const selectors=useSelector(state=>state)
-    // console.log(activeuser[0]._id)
-    // console.log(selectors.allSlices.data[0]._id)
-    // console.log(activeuser[0]._id)
+ 
 
    
   return (
