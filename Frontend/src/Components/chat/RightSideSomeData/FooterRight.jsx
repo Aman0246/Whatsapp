@@ -17,7 +17,7 @@ export default function FooterRight({textmessage,settextmessage,setDBchat,setFil
 
    
     const[newmessagePlane,setnewmessagePlane]=useState(false)
-    let s=useSelector(state=>state)
+    let s=useSelector(state=>state) 
     console.log(s.allSlices)
 ///all messages---------------------------------------
 useEffect(() => {
