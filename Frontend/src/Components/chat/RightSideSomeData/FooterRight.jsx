@@ -11,7 +11,7 @@ import { io } from 'socket.io-client';
 
 
 export default function FooterRight({textmessage,settextmessage,setDBchat,setFile,file,setincommingMessage,incommingMessage}) { 
-    const ENDPOINT="http://localhost:7000";
+    const ENDPOINT="https://whatsapp1-igge.onrender.com";
     let socket;
     socket=io(ENDPOINT)
 
