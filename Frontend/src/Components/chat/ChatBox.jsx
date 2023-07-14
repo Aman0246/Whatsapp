@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ChatHadder from './RightSideSomeData/ChatHadder'
 import Box from '@mui/material/Box';
-import Message from './RightSideSomeData/message';
+import Message from './RightSideSomeData/Message';
 import FooterRight from './RightSideSomeData/FooterRight';
 
 export default function ChatBox({activeuser,setactiveuser}) {
