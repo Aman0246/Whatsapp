@@ -39,7 +39,7 @@ export default function ChatDialog() {
            </Box>
 
 
-            <Box sx={{minWidth:"73%",minWidth:"300px"}}>
+            <Box sx={{minWidth:"73%",maxWidth:"300px"}}>
  {selector.length==0?<EmptyChat/>:<ChatBox activeuser={activeuser} setactiveuser={setactiveuser}/> }
                 
                
